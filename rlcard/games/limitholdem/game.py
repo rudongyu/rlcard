@@ -156,6 +156,8 @@ class LimitHoldemGame:
                 self.game_pointer = self.big_blind_player_id
             else:
                 self.game_pointer = self.small_blind_player_id
+            while self.players[self.game_pointer].status != PlayerStatus.ALIVE:
+                self.game_pointer = (self.game_pointer + 1) % self.num_players
             self.round.start_new_round(self.game_pointer)
 
         state = self.get_state(self.game_pointer)
