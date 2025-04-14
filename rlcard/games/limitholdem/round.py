@@ -20,7 +20,6 @@ class LimitHoldemRound:
         self.allowed_raise_num = allowed_raise_num
 
         self.num_players = num_players
-        self.folded_num = 
 
         # Count the number of raise
         self.have_raised = 0
