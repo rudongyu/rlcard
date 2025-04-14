@@ -74,6 +74,8 @@ class LimitHoldemGame:
         # Randomly choose a small blind and a big blind
         s = self.np_random.randint(0, self.num_players)
         b = (s + 1) % self.num_players
+        self.small_blind_player_id = s
+        self.big_blind_player_id = b
         self.players[b].in_chips = self.big_blind
         self.players[s].in_chips = self.small_blind
 
@@ -133,7 +135,7 @@ class LimitHoldemGame:
         self.history_raise_nums[self.round_counter] = self.round.have_raised
 
         # If a round is over, we deal more public cards
-        if self.round.is_over():
+        if self.round.is_over(self.players):
             # For the first round, we deal 3 cards
             if self.round_counter == 0:
                 self.public_cards.append(self.dealer.deal_card())
@@ -149,6 +151,11 @@ class LimitHoldemGame:
                 self.round.raise_amount = 2 * self.raise_amount
 
             self.round_counter += 1
+
+            if self.num_players == 2:
+                self.game_pointer = self.big_blind_player_id
+            else:
+                self.game_pointer = self.small_blind_player_id
             self.round.start_new_round(self.game_pointer)
 
         state = self.get_state(self.game_pointer)

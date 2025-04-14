@@ -20,6 +20,7 @@ class LimitHoldemRound:
         self.allowed_raise_num = allowed_raise_num
 
         self.num_players = num_players
+        self.folded_num = 
 
         # Count the number of raise
         self.have_raised = 0
@@ -115,13 +116,18 @@ class LimitHoldemRound:
 
         return full_actions
 
-    def is_over(self):
+    def is_over(self, players):
         """
         Check whether the round is over
+
+        Args:
+            players (list): The list of players that play the game
 
         Returns:
             (boolean): True if the current round is over
         """
-        if self.not_raise_num >= self.num_players:
+        alive_num = sum(p.status != 'folded' for p in players)
+        # if self.not_raise_num >= self.num_players:
+        if self.not_raise_num >= alive_num:
             return True
         return False
