@@ -15,6 +15,8 @@ class LimitHoldemDealer:
             deck_head = [Card(suit=c[1].upper(), rank=c[0]) for c in deck_head]
             print([card.get_index() for card in deck_head])
             self.deck = deck_head + self.deck
+        print("deck", deck_head)
+        exit()
         assert len(self.deck) == 52
         self.pot = 0
 
