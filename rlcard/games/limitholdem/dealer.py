@@ -16,7 +16,6 @@ class LimitHoldemDealer:
             deck_head = [Card(suit=c[1].upper(), rank=c[0]) for c in deck_head]
             self.deck = new_deck + deck_head[::-1]
         assert len(self.deck) == 52
-        print([str(c) for c in self.deck[-10:]])
         self.pot = 0
 
     def shuffle(self):
