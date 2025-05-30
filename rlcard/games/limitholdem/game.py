@@ -8,7 +8,7 @@ from rlcard.games.limitholdem import Round
 
 
 class LimitHoldemGame:
-    def __init__(self, allow_step_back=False, num_players=2):
+    def __init__(self, allow_step_back=False, num_players=2, deck_head=None):
         """Initialize the class limit holdem game"""
         self.allow_step_back = allow_step_back
         self.np_random = np.random.RandomState()
@@ -25,6 +25,7 @@ class LimitHoldemGame:
         self.allowed_raise_num = 4
 
         self.num_players = num_players
+        self.deck_head = deck_head
 
         # Save betting history
         self.history_raise_nums = [0 for _ in range(4)]
@@ -56,7 +57,7 @@ class LimitHoldemGame:
                 (int): Current player's id
         """
         # Initialize a dealer that can deal cards
-        self.dealer = Dealer(self.np_random)
+        self.dealer = Dealer(self.np_random, self.deck_head)
 
         # Initialize two players to play the game
         self.players = [Player(i, self.np_random) for i in range(self.num_players)]
@@ -65,8 +66,11 @@ class LimitHoldemGame:
         self.judger = Judger(self.np_random)
 
         # Deal cards to each  player to prepare for the first round
-        for i in range(2 * self.num_players):
-            self.players[i % self.num_players].hand.append(self.dealer.deal_card())
+        # for i in range(2 * self.num_players):
+            # self.players[i % self.num_players].hand.append(self.dealer.deal_card())
+        for i in range(self.num_players):
+            self.players[i].hand.append(self.dealer.deal_card())
+            self.players[i].hand.append(self.dealer.deal_card())
 
         # Initialize public cards
         self.public_cards = []
