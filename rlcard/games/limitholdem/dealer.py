@@ -10,7 +10,7 @@ class LimitHoldemDealer:
         if deck_head is not None:
             print(deck_head)
             for card in self.deck:
-                if str(card).lower() in deck_head:
+                if card.rank+card.suit.lower() in deck_head:
                     self.deck.remove(card)
             deck_head = [Card(suit=c[1].upper(), rank=c[0]) for c in deck_head]
             print([str(card) for card in deck_head])
