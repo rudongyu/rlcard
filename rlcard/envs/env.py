@@ -37,7 +37,7 @@ class Env(object):
                 if key in _game_config:
                     _game_config[key] = config[key]
             self.game.configure(_game_config)
-        print(config, self.default_game_config)
+            print(config, self.default_game_config, _game_config)
 
         # Get the number of players/actions in this game
         self.num_players = self.game.get_num_players()

@@ -43,6 +43,7 @@ class LimitHoldemGame:
     def configure(self, game_config):
         """Specify some game specific parameters, such as number of players"""
         self.num_players = game_config['game_num_players']
+        self.deck_head = game_config['deck_head']
 
     def init_game(self):
         """
