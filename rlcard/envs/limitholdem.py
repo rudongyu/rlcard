@@ -9,6 +9,7 @@ from rlcard.games.limitholdem import Game
 
 DEFAULT_GAME_CONFIG = {
         'game_num_players': 2,
+        'deck_head': None
         }
 
 class LimitholdemEnv(Env):
