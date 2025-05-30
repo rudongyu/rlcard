@@ -8,18 +8,14 @@ class LimitHoldemDealer:
         self.deck = init_standard_deck()
         self.shuffle()
         if deck_head is not None:
-            print(deck_head)
             new_deck = []
             for card in self.deck:
                 if card.rank+card.suit.lower() in deck_head:
                     continue
                 new_deck.append(card)
             deck_head = [Card(suit=c[1].upper(), rank=c[0]) for c in deck_head]
-            print([str(card) for card in deck_head])
             self.deck = deck_head + new_deck
-        print("deck", deck_head)
         assert len(self.deck) == 52
-        exit()
         self.pot = 0
 
     def shuffle(self):
