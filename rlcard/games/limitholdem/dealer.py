@@ -9,11 +9,10 @@ class LimitHoldemDealer:
         self.shuffle()
         if deck_head is not None:
             print(deck_head)
-            for card in deck_head:
+            for card in self.deck:
                 if card.get_index().lower() in deck_head:
                     self.deck.remove(card)
             deck_head = [Card(suit=c[1].upper(), rank=c[0]) for c in deck_head]
-            print(deck_head)
             print([card.get_index() for card in deck_head])
             self.deck = deck_head + self.deck
         print("deck", deck_head)
